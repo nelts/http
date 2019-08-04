@@ -9,6 +9,7 @@ const scope_1 = require("./scope");
 exports.Scope = scope_1.default;
 const controller_1 = require("./components/controller");
 exports.Controller = controller_1.default;
+const controller_2 = require("./compilers/controller");
 const static_filter_1 = require("./decorators/request/static-filter");
 const static_validator_header_1 = require("./decorators/request/static-validator-header");
 const static_validator_query_1 = require("./decorators/request/static-validator-query");
@@ -112,6 +113,7 @@ class Http {
                 ctx.body = e.message;
             }).then(() => ctx.responseBody());
         });
+        this.app.compiler.addCompiler(controller_2.default);
     }
     async componentDidCreated() {
         await new Promise((resolve, reject) => {

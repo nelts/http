@@ -7,6 +7,7 @@ import Context from './context';
 import { Compose, ComposeMiddleware } from '@nelts/utils';
 import Scope from './scope';
 import Controller from './components/controller';
+import ControllerCompiler from './compilers/controller';
 
 import StaticFilter from './decorators/request/static-filter';
 import StaticValidatorHeader from './decorators/request/static-validator-header';
@@ -126,6 +127,7 @@ export default class Http implements WorkerServiceFrameworker {
         ctx.body = e.message;
       }).then(() => ctx.responseBody());
     });
+    this.app.compiler.addCompiler(ControllerCompiler);
   }
 
   async componentDidCreated() {

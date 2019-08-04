@@ -1,6 +1,6 @@
 {
   "name": "@nelts/http",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "http for nelts worker",
   "main": "dist/index.js",
   "source": "dist",
@@ -26,10 +26,10 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@nelts/context": "^1.0.2",
+    "@nelts/context": "^1.0.4",
     "@nelts/messager": "^1.0.9",
-    "@nelts/utils": "^1.0.7",
-    "@nelts/worker": "^1.0.6",
+    "@nelts/utils": "^1.0.8",
+    "@nelts/worker": "^1.0.8",
     "find-my-way": "^2.1.0",
     "reflect-metadata": "^0.1.13"
   }
