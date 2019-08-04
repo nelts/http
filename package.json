@@ -1,0 +1,36 @@
+{
+  "name": "@nelts/http",
+  "version": "1.0.3",
+  "description": "http for nelts worker",
+  "main": "dist/index.js",
+  "source": "dist",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nelts/http.git"
+  },
+  "scripts": {
+    "build": "rm -rf dist/ && tsc -d"
+  },
+  "keywords": [
+    "template",
+    "nelts"
+  ],
+  "author": "cevio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nelts/http/issues"
+  },
+  "homepage": "https://github.com/nelts/http#readme",
+  "devDependencies": {
+    "@types/node": "^12.6.8",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@nelts/context": "^1.0.2",
+    "@nelts/messager": "^1.0.9",
+    "@nelts/utils": "^1.0.7",
+    "@nelts/worker": "^1.0.6",
+    "find-my-way": "^2.1.0",
+    "reflect-metadata": "^0.1.13"
+  }
+}
