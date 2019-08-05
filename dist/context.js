@@ -8,6 +8,18 @@ class HttpContext extends context_1.default {
         this._stackStatus = 0;
         this.respond = true;
     }
+    get messager() {
+        return this.app.messager;
+    }
+    send(method, data, options) {
+        return this.messager.send(method, data, options);
+    }
+    asyncSend(method, data, options) {
+        return this.messager.asyncSend(method, data, options);
+    }
+    asyncHealth() {
+        return this.messager.asyncHealth();
+    }
     stash(fn) {
         this._stacks.push(fn);
         return this;

@@ -2,6 +2,7 @@ import Context, { ContextOptions, ContextError } from '@nelts/context';
 import WorkerFactory from '@nelts/worker';
 import Http from './index';
 import { IncomingMessage, ServerResponse } from 'http';
+import { MessageSendOptions } from '@nelts/messager';
 
 type StackCallback = () => Promise<any>;
 type StackStatus = 0 | 1 | 2;
@@ -12,6 +13,22 @@ export default class HttpContext<B = any, F = any> extends Context<WorkerFactory
   public respond: boolean = true;
   constructor(app: WorkerFactory<Http>, req: IncomingMessage, res: ServerResponse, configs: ContextOptions) {
     super(app, req, res, configs);
+  }
+
+  get messager() {
+    return this.app.messager;
+  }
+
+  send(method: string, data?: any, options?: MessageSendOptions) {
+    return this.messager.send(method, data, options);
+  }
+
+  asyncSend(method: string, data?: any, options?: MessageSendOptions) {
+    return this.messager.asyncSend(method, data, options);
+  }
+
+  asyncHealth() {
+    return this.messager.asyncHealth();
   }
 
   stash(fn: StackCallback) {
