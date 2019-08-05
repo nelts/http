@@ -23,6 +23,10 @@ export default class HttpContext<B = any, F = any> extends Context<WorkerFactory
     return this.messager.send(method, data, options);
   }
 
+  startJob(name: string, auto?: boolean, run?: boolean) {
+    return this.app.startJob(name, auto, run);
+  }
+
   asyncSend(method: string, data?: any, options?: MessageSendOptions) {
     return this.messager.asyncSend(method, data, options);
   }

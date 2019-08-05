@@ -14,6 +14,9 @@ class HttpContext extends context_1.default {
     send(method, data, options) {
         return this.messager.send(method, data, options);
     }
+    startJob(name, auto, run) {
+        return this.app.startJob(name, auto, run);
+    }
     asyncSend(method, data, options) {
         return this.messager.asyncSend(method, data, options);
     }

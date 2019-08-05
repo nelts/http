@@ -12,6 +12,7 @@ export default class HttpContext<B = any, F = any> extends Context<WorkerFactory
     constructor(app: WorkerFactory<Http>, req: IncomingMessage, res: ServerResponse, configs: ContextOptions);
     readonly messager: import("@nelts/messager").Worker<WorkerFactory<Http>>;
     send(method: string, data?: any, options?: MessageSendOptions): number;
+    startJob(name: string, auto?: boolean, run?: boolean): Promise<any>;
     asyncSend(method: string, data?: any, options?: MessageSendOptions): Promise<any>;
     asyncHealth(): Promise<any>;
     stash(fn: StackCallback): this;
