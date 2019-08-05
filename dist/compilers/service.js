@@ -6,9 +6,9 @@ const utils_1 = require("@nelts/utils");
 async function Service(plugin) {
     const cwd = plugin.source;
     const files = await globby([
-        'controller/**/*.ts',
-        'controller/**/*.js',
-        '!controller/**/*.d.ts',
+        'service/**/*.ts',
+        'service/**/*.js',
+        '!service/**/*.d.ts',
     ], { cwd });
     files.forEach((file) => {
         file = path.resolve(cwd, file);

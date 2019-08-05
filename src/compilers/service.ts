@@ -6,9 +6,9 @@ import { RequireDefault } from '@nelts/utils';
 export default async function Service<T extends WorkerPlugin<Http>>(plugin: T) {
   const cwd = plugin.source;
   const files = await globby([
-    'controller/**/*.ts', 
-    'controller/**/*.js', 
-    '!controller/**/*.d.ts', 
+    'service/**/*.ts', 
+    'service/**/*.js', 
+    '!service/**/*.d.ts', 
   ], { cwd });
   files.forEach((file: string) => {
     file = path.resolve(cwd, file);
