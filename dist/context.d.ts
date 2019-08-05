@@ -10,6 +10,7 @@ export default class HttpContext<B = any, F = any> extends Context<WorkerFactory
     private _stackStatus;
     respond: boolean;
     constructor(app: WorkerFactory<Http>, req: IncomingMessage, res: ServerResponse, configs: ContextOptions);
+    readonly injector: import("injection").Container;
     readonly messager: import("@nelts/messager").Worker<WorkerFactory<Http>>;
     send(method: string, data?: any, options?: MessageSendOptions): number;
     startJob(name: string, options?: MessageSendOptions): Promise<any>;

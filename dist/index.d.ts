@@ -6,6 +6,7 @@ import Context from './context';
 import { ComposeMiddleware } from '@nelts/utils';
 import Scope from './scope';
 import Controller from './components/controller';
+import { Container, provide as Provide, inject as Inject } from 'injection';
 import StaticFilter from './decorators/request/static-filter';
 import StaticValidatorHeader from './decorators/request/static-validator-header';
 import StaticValidatorQuery from './decorators/request/static-validator-query';
@@ -39,14 +40,16 @@ declare const Static: {
         Query: typeof StaticValidatorQuery;
     };
 };
-export { Context, Scope, Controller, Middleware, Response, Guard, Get, Post, Put, Delete, Path, Method, Prefix, Dynamic, Static, };
+export { Provide, Inject, Context, Scope, Controller, Middleware, Response, Guard, Get, Post, Put, Delete, Path, Method, Prefix, Dynamic, Static, };
 export default class Http implements WorkerServiceFrameworker {
     private _app;
     private _middlewares;
+    private _injector;
     server: http.Server;
     readonly router: Router.Instance<Router.HTTPVersion.V1>;
     constructor(app: WorkerFactory<Http>);
     readonly app: WorkerFactory<Http>;
+    readonly injector: Container;
     use(...args: Middleware[]): this;
     private resumeConnection;
     componentWillCreate(): Promise<void>;

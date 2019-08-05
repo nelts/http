@@ -10,6 +10,10 @@ exports.Scope = scope_1.default;
 const controller_1 = require("./components/controller");
 exports.Controller = controller_1.default;
 const controller_2 = require("./compilers/controller");
+const service_1 = require("./compilers/service");
+const injection_1 = require("injection");
+exports.Provide = injection_1.provide;
+exports.Inject = injection_1.inject;
 const static_filter_1 = require("./decorators/request/static-filter");
 const static_validator_header_1 = require("./decorators/request/static-validator-header");
 const static_validator_query_1 = require("./decorators/request/static-validator-query");
@@ -55,6 +59,7 @@ exports.Static = Static;
 class Http {
     constructor(app) {
         this._middlewares = [];
+        this._injector = new injection_1.Container();
         this._app = app;
         this.router = Router({
             ignoreTrailingSlash: true,
@@ -76,6 +81,9 @@ class Http {
     get app() {
         return this._app;
     }
+    get injector() {
+        return this._injector;
+    }
     use(...args) {
         this._middlewares.push(...args);
         return this;
@@ -87,6 +95,8 @@ class Http {
         socket.resume();
     }
     async componentWillCreate() {
+        this.app.compiler.addCompiler(service_1.default);
+        this.app.compiler.addCompiler(controller_2.default);
         this.server = http.createServer((req, res) => {
             const ctx = new context_1.default(this._app, req, res, {
                 cookie: this.app.configs.cookie,
@@ -113,7 +123,6 @@ class Http {
                 ctx.body = e.message;
             }).then(() => ctx.responseBody());
         });
-        this.app.compiler.addCompiler(controller_2.default);
     }
     async componentDidCreated() {
         await new Promise((resolve, reject) => {

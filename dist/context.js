@@ -8,6 +8,9 @@ class HttpContext extends context_1.default {
         this._stackStatus = 0;
         this.respond = true;
     }
+    get injector() {
+        return this.app.frameworker.injector;
+    }
     get messager() {
         return this.app.messager;
     }

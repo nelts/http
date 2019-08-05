@@ -31,6 +31,7 @@
     "@nelts/utils": "^1.0.18",
     "@nelts/worker": "^1.0.27",
     "find-my-way": "^2.1.0",
+    "injection": "^1.6.1",
     "reflect-metadata": "^0.1.13"
   }
 }
