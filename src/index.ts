@@ -8,8 +8,6 @@ import { Compose, ComposeMiddleware } from '@nelts/utils';
 import Scope from './scope';
 import Controller from './components/controller';
 import ControllerCompiler from './compilers/controller';
-import ServiceCompiler from './compilers/service';
-import { Container, provide as Provide, inject as Inject } from 'injection';
 
 import StaticFilter from './decorators/request/static-filter';
 import StaticValidatorHeader from './decorators/request/static-validator-header';
@@ -52,8 +50,6 @@ const Static = {
 }
 
 export {
-  Provide,
-  Inject,
   Context,
   Scope,
   Controller,
@@ -74,7 +70,6 @@ export {
 export default class Http implements WorkerServiceFrameworker {
   private _app: WorkerFactory<Http>;
   private _middlewares: Middleware[] = [];
-  private _injector: Container = new Container();
   public server: http.Server;
   public readonly router: Router.Instance<Router.HTTPVersion.V1>;
   constructor(app: WorkerFactory<Http>) {
@@ -99,10 +94,6 @@ export default class Http implements WorkerServiceFrameworker {
     return this._app;
   }
 
-  get injector() {
-    return this._injector;
-  }
-
   use(...args: Middleware[]) {
     this._middlewares.push(...args);
     return this;
@@ -115,7 +106,6 @@ export default class Http implements WorkerServiceFrameworker {
   }
 
   async componentWillCreate() {
-    this.app.compiler.addCompiler(ServiceCompiler);
     this.app.compiler.addCompiler(ControllerCompiler);
     this.server = http.createServer((req, res) => {
       const ctx = new Context(this._app, req, res, {

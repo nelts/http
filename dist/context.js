@@ -9,7 +9,7 @@ class HttpContext extends context_1.default {
         this.respond = true;
     }
     get injector() {
-        return this.app.frameworker.injector;
+        return this.app.injector;
     }
     get messager() {
         return this.app.messager;

@@ -16,7 +16,7 @@ export default class HttpContext<B = any, F = any> extends Context<WorkerFactory
   }
 
   get injector() {
-    return this.app.frameworker.injector;
+    return this.app.injector;
   }
 
   get messager() {
