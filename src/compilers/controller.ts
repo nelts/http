@@ -177,7 +177,7 @@ function addComposeCallback<C extends Context, T extends WorkerPlugin<Http>>(
 
   function addContextLife(name: string) {
     callbacks.push(async (ctx, next) => {
-      await ctx.app.emit(name, ctx);
+      await ctx.emit(name);
       await next();
     })
   }

@@ -112,7 +112,7 @@ function addComposeCallback(options, controller, plugin, property) {
     return callbacks;
     function addContextLife(name) {
         callbacks.push(async (ctx, next) => {
-            await ctx.app.emit(name, ctx);
+            await ctx.emit(name);
             await next();
         });
     }

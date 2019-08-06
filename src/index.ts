@@ -127,7 +127,7 @@ export default class Http implements WorkerServiceFrameworker {
       if (res.headersSent) return;
       if (Array.isArray(result) && result.length) _composeCallbacks = _composeCallbacks.concat(result);
       ctx.app.emit('ContextStart').then(() => Compose(_composeCallbacks)(ctx)).catch((e: ContextError) => {
-        if (ctx.listenerCount('error')) return ctx.emit('ContextError', e);
+        if (ctx.listenerCount('ContextError')) return ctx.emit('ContextError', e);
         if (res.headersSent) return ctx.rollback(e);
         ctx.status = (e && e.status) || 500;
         ctx.body = e.message;
