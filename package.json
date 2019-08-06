@@ -1,6 +1,6 @@
 {
   "name": "@nelts/http",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "http for nelts worker",
   "main": "dist/index.js",
   "source": "dist",
