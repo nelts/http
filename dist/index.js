@@ -108,7 +108,7 @@ class Http {
                 return;
             if (Array.isArray(result) && result.length)
                 _composeCallbacks = _composeCallbacks.concat(result);
-            ctx.app.emit('ContextStart').then(() => utils_1.Compose(_composeCallbacks)(ctx)).catch((e) => {
+            ctx.app.emit('ContextStart', ctx).then(() => utils_1.Compose(_composeCallbacks)(ctx)).catch((e) => {
                 if (ctx.listenerCount('ContextError'))
                     return ctx.emit('ContextError', e);
                 if (res.headersSent)

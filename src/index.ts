@@ -126,7 +126,7 @@ export default class Http implements WorkerServiceFrameworker {
       const result: any = this.router.lookup(ctx.req, ctx.res, ctx);
       if (res.headersSent) return;
       if (Array.isArray(result) && result.length) _composeCallbacks = _composeCallbacks.concat(result);
-      ctx.app.emit('ContextStart').then(() => Compose(_composeCallbacks)(ctx)).catch((e: ContextError) => {
+      ctx.app.emit('ContextStart', ctx).then(() => Compose(_composeCallbacks)(ctx)).catch((e: ContextError) => {
         if (ctx.listenerCount('ContextError')) return ctx.emit('ContextError', e);
         if (res.headersSent) return ctx.rollback(e);
         ctx.status = (e && e.status) || 500;
