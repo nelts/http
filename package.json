@@ -22,14 +22,14 @@
   },
   "homepage": "https://github.com/nelts/http#readme",
   "devDependencies": {
-    "@types/node": "^12.6.8",
+    "@types/node": "^12.7.2",
     "typescript": "^3.5.3"
   },
   "dependencies": {
     "@nelts/context": "^1.0.14",
-    "@nelts/messager": "^1.0.17",
-    "@nelts/utils": "^1.0.18",
-    "@nelts/worker": "^1.0.29",
+    "@nelts/messager": "^1.0.18",
+    "@nelts/utils": "^1.0.19",
+    "@nelts/worker": "^1.0.30",
     "find-my-way": "^2.1.0",
     "reflect-metadata": "^0.1.13"
   }
