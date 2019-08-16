@@ -29,6 +29,7 @@ import Get from './decorators/router/get';
 import Post from './decorators/router/post';
 import Put from './decorators/router/put';
 import Delete from './decorators/router/delete';
+import Head from './decorators/router/head';
 
 type Middleware = ComposeMiddleware<Context>;
 
@@ -56,6 +57,7 @@ export {
   Middleware,
   Response,
   Guard,
+  Head,
   Get,
   Post,
   Put,

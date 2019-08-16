@@ -23,6 +23,7 @@ import Get from './decorators/router/get';
 import Post from './decorators/router/post';
 import Put from './decorators/router/put';
 import Delete from './decorators/router/delete';
+import Head from './decorators/router/head';
 declare type Middleware = ComposeMiddleware<Context>;
 declare const Dynamic: {
     Filter: typeof DynamicFilter;
@@ -39,7 +40,7 @@ declare const Static: {
         Query: typeof StaticValidatorQuery;
     };
 };
-export { Context, Scope, Controller, Middleware, Response, Guard, Get, Post, Put, Delete, Path, Method, Prefix, Dynamic, Static, };
+export { Context, Scope, Controller, Middleware, Response, Guard, Head, Get, Post, Put, Delete, Path, Method, Prefix, Dynamic, Static, };
 export default class Http implements WorkerServiceFrameworker {
     private _app;
     private _middlewares;

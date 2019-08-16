@@ -35,6 +35,8 @@ const put_1 = require("./decorators/router/put");
 exports.Put = put_1.default;
 const delete_1 = require("./decorators/router/delete");
 exports.Delete = delete_1.default;
+const head_1 = require("./decorators/router/head");
+exports.Head = head_1.default;
 const Dynamic = {
     Filter: dynamic_filter_1.default,
     Loader: dynamic_loader_1.default,
