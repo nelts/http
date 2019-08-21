@@ -26,10 +26,10 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@nelts/context": "^1.0.14",
-    "@nelts/messager": "^1.0.18",
-    "@nelts/utils": "^1.0.19",
-    "@nelts/worker": "^1.0.30",
+    "@nelts/context": "^1.0.15",
+    "@nelts/messager": "^1.0.19",
+    "@nelts/utils": "^1.0.20",
+    "@nelts/worker": "^1.0.31",
     "find-my-way": "^2.1.0",
     "reflect-metadata": "^0.1.13"
   }
