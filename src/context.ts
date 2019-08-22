@@ -50,7 +50,7 @@ export default class HttpContext<B = any, F = any> extends Context<WorkerFactory
 
   async commit() {
     if (this._stackStatus !== 0) return;
-    await this.emit('ContextResolve');
+    await this.sync('ContextResolve');
     this._stackStatus = 2;
   }
 
@@ -59,7 +59,7 @@ export default class HttpContext<B = any, F = any> extends Context<WorkerFactory
     const stacks = this._stacks.slice(0);
     let i = stacks.length;
     while (i--) await stacks[i]();
-    await this.emit('ContextReject', e);
+    await this.sync('ContextReject', e);
     this._stackStatus = 1;
   }
 }

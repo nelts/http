@@ -8,20 +8,8 @@ import { Compose, ComposeMiddleware } from '@nelts/utils';
 import Scope from './scope';
 import Controller from './components/controller';
 import ControllerCompiler from './compilers/controller';
-
-import StaticFilter from './decorators/request/static-filter';
-import StaticValidatorHeader from './decorators/request/static-validator-header';
-import StaticValidatorQuery from './decorators/request/static-validator-query';
-
-import DynamicFilter from './decorators/request/dynamic-filter';
-import DynamicLoader from './decorators/request/dynamic-loader';
-import DynamicValidatorBody from './decorators/request/dynamic-validator-body';
-import DynamicValidatorFile from './decorators/request/dynamic-validator-file';
-
 import Middleware from './decorators/middleware';
 import Response from './decorators/response';
-import Guard from './decorators/request/guard';
-
 import Prefix from './decorators/router/prefix';
 import Path from './decorators/router/path';
 import Method from './decorators/router/method';
@@ -33,30 +21,12 @@ import Head from './decorators/router/head';
 
 type Middleware = ComposeMiddleware<Context>;
 
-const Dynamic = {
-  Filter: DynamicFilter,
-  Loader: DynamicLoader,
-  validator: {
-    Body: DynamicValidatorBody,
-    File: DynamicValidatorFile,
-  }
-}
-
-const Static = {
-  Filter: StaticFilter,
-  validator: {
-    Header: StaticValidatorHeader,
-    Query: StaticValidatorQuery,
-  }
-}
-
 export {
   Context,
   Scope,
   Controller,
   Middleware,
   Response,
-  Guard,
   Head,
   Get,
   Post,
@@ -65,8 +35,6 @@ export {
   Path,
   Method,
   Prefix,
-  Dynamic,
-  Static,
 }
 
 export default class Http implements WorkerServiceFrameworker {
@@ -118,13 +86,13 @@ export default class Http implements WorkerServiceFrameworker {
       const result: any = this.router.lookup(ctx.req, ctx.res, ctx);
       if (res.headersSent) return;
       if (Array.isArray(result) && result.length) _composeCallbacks = _composeCallbacks.concat(result);
-      ctx.app.emit('ContextStart', ctx).then(() => Compose(_composeCallbacks)(ctx)).catch((e: ContextError) => {
-        if (ctx.listenerCount('ContextError')) return ctx.emit('ContextError', e);
+      ctx.app.sync('ContextStart', ctx).then(() => Compose(_composeCallbacks)(ctx)).catch((e: ContextError) => {
+        if (ctx.listenerCount('ContextError')) return ctx.sync('ContextError', e);
         if (res.headersSent) return ctx.rollback(e);
         ctx.status = (e && e.status) || 500;
         ctx.body = e.message;
         return ctx.rollback(e);
-      }).then(() => ctx.commit()).then(() => ctx.app.emit('ContextStop', ctx)).catch((e: ContextError) => {
+      }).then(() => ctx.commit()).then(() => ctx.app.sync('ContextStop', ctx)).catch((e: ContextError) => {
         if (res.headersSent) return;
         ctx.status = (e && e.status) || 500;
         ctx.body = e.message;
@@ -139,15 +107,15 @@ export default class Http implements WorkerServiceFrameworker {
         resolve();
       });
     });
-    await this.app.emit('ServerStarted');
+    await this.app.sync('ServerStarted');
   }
 
   async componentWillDestroy() {
-    await this.app.emit('ServerStopping');
+    await this.app.sync('ServerStopping');
   }
 
   async componentDidDestroyed() {
     this.server.close();
-    await this.app.emit('ServerStopped');
+    await this.app.sync('ServerStopped');
   }
 }

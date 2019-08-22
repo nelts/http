@@ -36,7 +36,7 @@ class HttpContext extends context_1.default {
     async commit() {
         if (this._stackStatus !== 0)
             return;
-        await this.emit('ContextResolve');
+        await this.sync('ContextResolve');
         this._stackStatus = 2;
     }
     async rollback(e) {
@@ -46,7 +46,7 @@ class HttpContext extends context_1.default {
         let i = stacks.length;
         while (i--)
             await stacks[i]();
-        await this.emit('ContextReject', e);
+        await this.sync('ContextReject', e);
         this._stackStatus = 1;
     }
 }
