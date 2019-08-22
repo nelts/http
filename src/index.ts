@@ -8,7 +8,7 @@ import { Compose, ComposeMiddleware } from '@nelts/utils';
 import Scope from './scope';
 import Controller from './components/controller';
 import ControllerCompiler from './compilers/controller';
-import Middleware from './decorators/middleware';
+import Interceptor from './decorators/middleware';
 import Response from './decorators/response';
 import Prefix from './decorators/router/prefix';
 import Path from './decorators/router/path';
@@ -25,7 +25,7 @@ export {
   Context,
   Scope,
   Controller,
-  Middleware,
+  Interceptor,
   Response,
   Head,
   Get,

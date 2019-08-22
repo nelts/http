@@ -6,7 +6,7 @@ import Context from './context';
 import { ComposeMiddleware } from '@nelts/utils';
 import Scope from './scope';
 import Controller from './components/controller';
-import Middleware from './decorators/middleware';
+import Interceptor from './decorators/middleware';
 import Response from './decorators/response';
 import Prefix from './decorators/router/prefix';
 import Path from './decorators/router/path';
@@ -17,7 +17,7 @@ import Put from './decorators/router/put';
 import Delete from './decorators/router/delete';
 import Head from './decorators/router/head';
 declare type Middleware = ComposeMiddleware<Context>;
-export { Context, Scope, Controller, Middleware, Response, Head, Get, Post, Put, Delete, Path, Method, Prefix, };
+export { Context, Scope, Controller, Interceptor, Response, Head, Get, Post, Put, Delete, Path, Method, Prefix, };
 export default class Http implements WorkerServiceFrameworker {
     private _app;
     private _middlewares;
