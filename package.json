@@ -27,9 +27,9 @@
   },
   "dependencies": {
     "@nelts/context": "^1.0.17",
-    "@nelts/messager": "^1.0.24",
+    "@nelts/messager": "^1.0.25",
     "@nelts/utils": "^1.0.20",
-    "@nelts/worker": "^1.0.41",
+    "@nelts/worker": "^1.0.42",
     "find-my-way": "^2.1.1",
     "reflect-metadata": "^0.1.13"
   }
