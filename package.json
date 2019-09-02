@@ -29,7 +29,7 @@
     "@nelts/context": "^1.0.17",
     "@nelts/messager": "^1.0.23",
     "@nelts/utils": "^1.0.20",
-    "@nelts/worker": "^1.0.37",
+    "@nelts/worker": "^1.0.38",
     "find-my-way": "^2.1.1",
     "reflect-metadata": "^0.1.13"
   }
